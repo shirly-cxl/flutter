@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:total/util/tools.dart';
 
@@ -8,6 +9,8 @@ class HobbyPage extends StatefulWidget {
 
 class _HobbyPageState extends State<HobbyPage> {
   TextEditingController _controller = new TextEditingController();
+  TextEditingController textC = new TextEditingController();
+  String title;
   List _list=[
     {'title':'美食', 'choose':true,},
     {'title':'烹饪', 'choose':false,},
@@ -28,6 +31,8 @@ class _HobbyPageState extends State<HobbyPage> {
     {'title':'摄影', 'choose':false,},
     {'title':'电影', 'choose':false,},
   ];
+  List<String> data = ['爱好', 'ok'];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -138,12 +143,92 @@ class _HobbyPageState extends State<HobbyPage> {
                     Spacer(),
                     InkWell(
                       onTap: (){
+                        showDialog(
+                          context:context,
+                        builder: (BuildContext context){
+                          return Material(
+                            color: Colors.transparent,
+                            child: CupertinoAlertDialog(
+                              content:Column(
+                                children: <Widget>[
+                                  Text('自选爱好',style: TextStyle(color: Color(0xff595959)),),
+                                  Container(
+                                    margin: EdgeInsets.only(top: 10),
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(5),
+                                      ),
+                                      border: Border.all(color: Colors.grey)
+                                    ),
+                                    child:  TextField(
+                                      controller: textC,
+                                      onSubmitted: (String str){
+                                          if(textC.text.isEmpty){
+                                          Scaffold.of(context).showSnackBar(SnackBar(
+                                            content: Text("请输入内容"),
+                                            action: SnackBarAction(
+                                            label: "好的",
+                                            onPressed: () => null,
+                                            ),
+                                            ));
+                                            return;
+                                            }
+                                          textC.clear();
+                                          setState(() => data.insert(data.length, str));
+                                          },
+                                      onChanged: (str){
+                                        title=str;
+                                        if(textC.text.length >4){
+                                          showToast(context, '只能输入1~4字');
+                                        }
+                                        print(title);
+                                      },
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        helperText:'输入1~4字',
+                                        contentPadding: const EdgeInsets.only(left: 8.0,),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              actions:<Widget>[
+                                CupertinoDialogAction(
+                                  child: Text('取消',style: TextStyle(color: Color(0xff8C8C8C)),),
+                                  onPressed: ()=> Navigator.of(context).pop(),
+                                ),
 
+                                CupertinoDialogAction(
+                                  child: Text('确认',),
+                                  onPressed: (){
+                                    setState(() => data.insert(data.length, title));
+                                    Navigator.of(context).pop(title);
+                                  },
+                                ),
+                              ],
+                            ),
+                          );
+                          });
                       },
                         child: Icon(Icons.add_circle_outline,color: Color(0xff8C8C8C),size: 18,)
                     ),
-
                   ],
+                ),
+                Space(),
+                Wrap(
+                  spacing: 10,
+                  runSpacing: 10,
+                  children: List.generate(data.length, (index){
+                    return LikeWidget(
+                      title: data[index],
+                      onTap: (){
+                        setState(() {
+                          data.removeAt(index);
+                        });
+                      },
+                    );
+                  })
                 ),
               ],
             ),
@@ -153,6 +238,50 @@ class _HobbyPageState extends State<HobbyPage> {
     );
   }
 }
+
+class LikeWidget extends StatelessWidget {
+  final String title;
+  final Function onTap;
+  LikeWidget({Key key, this.title, this.onTap,}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return  Container(
+      width: 87,
+      height: 26,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(
+            Radius.circular(5),
+          ),
+        color: Color(0xff1890FF),
+      ),
+      child: Stack(
+        children: <Widget>[
+          Container(
+            alignment: Alignment.center,
+            margin: EdgeInsets.only(right: 10),
+            child: Text(
+              '$title',
+              style: TextStyle(
+                fontSize: 12,
+                color: Colors.white,
+              ),
+            ),
+          ),
+          Positioned(
+            right: 5,
+            top: 5,
+            child: InkWell(
+              onTap: onTap,
+              child: Icon(Icons.cancel,color: Colors.white,size: 16,),
+            ),
+          )
+        ],
+      ),
+
+    );
+  }
+}
+
 
 class ButtonWidget extends StatefulWidget {
   final List list;

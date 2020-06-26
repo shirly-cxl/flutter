@@ -8,6 +8,7 @@ import 'zhujian/experimental_page.dart';
 import 'zhujian/my_edit_rich_page.dart';
 import 'zhujian/painter_page.dart';
 import 'zhujian/path_page.dart';
+import 'zhujian/qq_cannel_page.dart';
 import 'zhujian/radio_page.dart';
 import 'zhujian/single_image_page.dart';
 import 'zhujian/video_page.dart';
@@ -33,7 +34,7 @@ class _ThirdPageState extends State<ThirdPage> {
     {'text':'单选图片','onPressed':()=>routePush(SingleImagePage()),},
     {'text':'多选图片','onPressed':()=>routePush(AddImagePage()),},
     {'text':'NestedScrollView','onPressed':()=>routePush(NestedScrollViewPage()),},
-//    {'text':'音频','onPressed':()=>routePush(AudioPage()),},
+    {'text':'右滑删除','onPressed':()=>routePush(CancelPage()),},
 //    {'text':'富文本','onPressed':()=>routePush(EditRichPage()),},
 //    {'text':'视频','onPressed':()=>routePush(VideoPage()),},
   ];
@@ -41,7 +42,7 @@ class _ThirdPageState extends State<ThirdPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new NavigationBar(title: '各种组件'),
+      appBar: new NavigationBar(title: '各种组件/插件'),
       body: new ListView.builder(
         itemBuilder: (BuildContext context, int index){
           VoidCallback _onPressed=data[index]['onPressed'];

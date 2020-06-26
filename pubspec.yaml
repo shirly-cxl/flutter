@@ -48,6 +48,9 @@ dependencies:
   #视频播放配件 0.9.10
   chewie: any
   multi_image_picker: ^4.6.6+rc.1
+  #浮动动作按钮
+  flutter_speed_dial: ^1.2.5
+  flutter_slidable: ^0.5.4
   flutter_verification_code_input:
     git:
       url: git://github.com/tinylife-io/flutter_verification_code_input.git

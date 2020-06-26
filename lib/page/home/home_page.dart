@@ -9,6 +9,7 @@ import 'yemian/go_page.dart';
 import 'yemian/hobby_page.dart';
 import 'yemian/house_property_page.dart';
 import 'yemian/password_page.dart';
+import 'yemian/speed_page.dart';
 import 'yemian/time_page.dart';
 
 
@@ -29,7 +30,7 @@ class _HomePageState extends State<HomePage> {
     {'text':'房产','onPressed':()=>routePush(HousePropertyPage()),},
     {'text':'想去','onPressed':()=>routePush(GoPage()),},
     {'text':'兴趣爱好','onPressed':()=>routePush(HobbyPage()),},
-//    {'text':'儿童','onPressed':()=>routePush(ChildrenPage()),},
+    {'text':'浮动动作按钮','onPressed':()=>routePush(SpeedPage()),},
 //    {'text':'麦田动画','onPressed':()=>routePush(DayNightPage()),},
 //    {'text':'时钟','onPressed':()=>routePush(TimePage()),},
 //    {'text':'面对面建群','onPressed':()=>routePush(FaceAndFacePage()),},

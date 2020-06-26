@@ -9,6 +9,7 @@ class ChildrenPage extends StatefulWidget {
 
 class _ChildrenPageState extends State<ChildrenPage> {
   int radio = 0;
+  List data=['儿童1','儿童2'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,11 +90,18 @@ class _ChildrenPageState extends State<ChildrenPage> {
           ),
           radio == 1
          ? Column(
-            children: <Widget>[
-              LabelTile(title: '儿童1',),
-              Space(),
-              LabelTile(title: '儿童2',),
-            ],
+            children:List.generate(data.length, (index){
+              return Container(
+                margin: EdgeInsets.only(bottom: 10),
+                child: LabelTile(
+                  title:data[index],
+                  onTap: (){
+                    setState(() {
+                      data.removeAt(index);
+                    });
+                  },),
+              );
+            }),
           )
           :Container(),
         ],
@@ -106,7 +114,8 @@ class _ChildrenPageState extends State<ChildrenPage> {
 
 class LabelTile extends StatefulWidget {
   final String title;
-  LabelTile({this.title,});
+  final Function onTap;
+  LabelTile({this.title,this.onTap});
 
   @override
   _LabelTileState createState() => _LabelTileState();
@@ -131,7 +140,7 @@ class _LabelTileState extends State<LabelTile> {
               IconButton(
                 icon: Icon(Icons.cancel),
                 color: Color(0xffBFBFBF),
-                onPressed: (){},),
+                onPressed: widget.onTap,),
             ],
           ),
           Container(
