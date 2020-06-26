@@ -18,6 +18,16 @@ class _HobbyPageState extends State<HobbyPage> {
     {'title':'汽车', 'choose':false,},
     {'title':'旅行', 'choose':false,},
   ];
+  List _painting=[
+    {'title':'绘画', 'choose':false,},
+    {'title':'钢琴', 'choose':false,},
+    {'title':'吉他', 'choose':false,},
+    {'title':'舞蹈', 'choose':false,},
+    {'title':'手工', 'choose':true,},
+    {'title':'软陶', 'choose':false,},
+    {'title':'摄影', 'choose':false,},
+    {'title':'电影', 'choose':false,},
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,36 +98,77 @@ class _HobbyPageState extends State<HobbyPage> {
                       color: Color(0xff262626),
                   ),
                 ),
-                InterestWidget(
+                Space(height: 15,),
+                ButtonWidget(
                   title: '生活',
                   subTitle: '1',
                   value: false,
                   list: _list,
                 ),
+                ButtonWidget(
+                  title: '艺术',
+                  value: false,
+                  list: _painting,
+                ),
               ],
             ),
           ),
+          Space(),
+          Container(
+            color: Colors.white,
+            padding: EdgeInsets.only(top: 13,left: 16,right: 16,bottom: 13),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Text(
+                      '自选爱好',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Color(0xff262626),
+                      ),
+                    ),
+                    Text(
+                      '1',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xff1890FF),
+                      ),
+                    ),
+                    Spacer(),
+                    InkWell(
+                      onTap: (){
+
+                      },
+                        child: Icon(Icons.add_circle_outline,color: Color(0xff8C8C8C),size: 18,)
+                    ),
+
+                  ],
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );
   }
 }
 
-class InterestWidget extends StatefulWidget {
+class ButtonWidget extends StatefulWidget {
   final List list;
   final String title;
   final String subTitle;
   bool value=false;
-  InterestWidget({Key key, this.list, this.title,this.subTitle,this.value}) : super(key: key);
+  ButtonWidget({Key key, this.list, this.title,this.subTitle,this.value}) : super(key: key);
   @override
-  _InterestWidgetState createState() => _InterestWidgetState();
+  _ButtonWidgetState createState() => _ButtonWidgetState();
 }
 
-class _InterestWidgetState extends State<InterestWidget> {
+class _ButtonWidgetState extends State<ButtonWidget> {
   @override
   Widget build(BuildContext context) {
     return  Container(
-      margin: EdgeInsets.only(top: 12,bottom: 14),
+      margin: EdgeInsets.only(bottom: 5,),
       color: Colors.white,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

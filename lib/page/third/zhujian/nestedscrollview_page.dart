@@ -96,8 +96,8 @@ class _NestedScrollViewPageState extends State<NestedScrollViewPage> with Single
                       ),
                       Space(height: 12,),
                       Container(
-                        height: 85,
-                        width: 85,
+                        height: 75,
+                        width: 75,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(85/2),
@@ -118,7 +118,7 @@ class _NestedScrollViewPageState extends State<NestedScrollViewPage> with Single
                   ),
                 ),
                   Positioned(
-                    top: winHeight(context)/3.3,
+                    top: winHeight(context)/3.5,
                     left:winWidth(context)/4,
                     child: Row(
                       children:List.generate(listFan.length, (index){
