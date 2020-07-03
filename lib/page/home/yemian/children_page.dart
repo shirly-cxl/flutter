@@ -104,6 +104,57 @@ class _ChildrenPageState extends State<ChildrenPage> {
             }),
           )
           :Container(),
+          Container(
+            decoration: BoxDecoration(
+              border: Border(
+                top: BorderSide(
+                    color: Color(0xffC0984E)),
+//                right: BorderSide(
+//                    color: Color(0xff000000)),
+//                bottom: BorderSide(
+//                    color: Color(0xff000000)),
+//                left: BorderSide(
+//                    color: Color(0xff000000)),
+              ),
+            ),
+            margin: EdgeInsets.only(
+              left: 10,
+              right: 10,
+              top: 100
+            ),
+            child: Container(
+              padding: EdgeInsets.only(
+                left: 10,
+              ),
+              height: 47,
+              decoration: BoxDecoration(
+                color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+//              border: Border.all(),
+
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                    color: Color(0x000000)
+                        .withOpacity(0.16),
+                    blurRadius: 10.0,
+                  ),
+                ],
+              ),
+              child: TextField(
+                onChanged: (value) {
+                },
+                decoration: InputDecoration(
+                  hintText: "选择提现地址",
+                  hintStyle: TextStyle(
+                    fontSize:14,
+                    color: Color(0xff11152b)
+                        .withOpacity(0.4),
+                  ),
+                  border: InputBorder.none,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
